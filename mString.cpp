@@ -24,7 +24,7 @@ mString& mString::operator=(std::string str)
 
 mString& mString::operator=(mString* str)
 {
-    //  mainStr = newstr;
+    mainStr = str->mainStr;
     return *this;
 }
 
