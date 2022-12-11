@@ -1,13 +1,16 @@
-all: myString clean
+TARGET = myString
+CC = g++
 
-myString: main.o mString.o
-	g++ main.cpp -o main mString.cpp
+SRC = $(wildcard *.cpp)
+OBJ = $(patsubst %.cpp, %.o, $(SRC))
 
-main.o: main.cpp
-	g++ -c main.cpp
+all: $(TARGET) clean
 
-mString.o: mString.cpp mString.h
-	g++ -c mString.cpp
+$(TARGET): $(OBJ)
+	$(CC) $(OBJ) -o main
+
+%.o: %.cpp
+	$(CC) -c $< -o $@
 
 clean:
-	rm -rf *.o myString
+	rm -rf *.o $(TARGET)
