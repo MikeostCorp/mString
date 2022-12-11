@@ -1,16 +1,17 @@
 TARGET = myString
 CC = g++
 
-SRC = $(wildcard *.cpp)
-OBJ = $(patsubst %.cpp, %.o, $(SRC))
+PREF_SRC = ./src/
+PREF_OBJ = ./obj/
 
-all: $(TARGET) clean
+SRC = $(wildcard $(PREF_SRC)*.cpp)
+OBJ = $(patsubst $(PREF_SRC)%.cpp, $(PREF_OBJ)%.o, $(SRC))
 
 $(TARGET): $(OBJ)
-	$(CC) $(OBJ) -o main
+	$(CC) $(OBJ) -o $(TARGET)
 
-%.o: %.cpp
+$(PREF_OBJ)%.o: $(PREF_SRC)%.cpp
 	$(CC) -c $< -o $@
 
 clean:
-	rm -rf *.o $(TARGET)
+	rm -rf $(TARGET) $(PREF_OBJ)*.o
