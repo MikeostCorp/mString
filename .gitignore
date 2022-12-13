@@ -1,0 +1,14 @@
+# Ignore files
+*.a
+*.o
+*.cmake
+CMakeCache.txt
+
+
+Makefile
+main
+main.cpp
+
+
+# Ignore directories
+CMakeFiles/
