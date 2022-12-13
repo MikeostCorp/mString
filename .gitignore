@@ -12,3 +12,4 @@ main.cpp
 
 # Ignore directories
 CMakeFiles/
+obj/
