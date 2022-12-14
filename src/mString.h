@@ -7,8 +7,12 @@ private:
     char* mainStr;
 
 public:
-    mString(); // constuctor
-    ~mString(); // destructor
+    mString();                 // default constuctor
+    mString(std::string str);  // constructor for string
+    mString(char* str);        // constructor for char
+    mString(const char* str);  // constctor for const char
+    mString(mString* str);     // constructor for mString
+    ~mString();                // destructor
 
     //=========================
     // 
@@ -16,15 +20,15 @@ public:
     //
     //=========================
 
-    mString& operator = (std::string str); // overload operator for just string =
-    // myString& operator += (std::string str); // overload operator for just string +=
-    mString& operator = (mString* str); // overload operator for string myString =
-    // myString& operator += (myString str); // overload operator for just myString +=
-    mString& operator = (char* str);  // overload operator for char string =
-    //  myString& operator += (char* str);  // overload operator for char string +=
+    mString& operator = (std::string str);    // overload operator for just string =
+    mString& operator += (std::string str);   // overload operator for just string +=
+    mString& operator = (mString* str);       // overload operator for string myString =
+    // mString& operator += (myString str);   // overload operator for just myString +=
+    mString& operator = (char* str);          // overload operator for char string =
+    //mString& operator += (char* str);       // overload operator for char string +=
 
-    friend std::ostream& operator<< (std::ostream& out, const mString& myStr); // couter myString
-    friend std::istream& operator>> (std::istream& in, mString& myStr); // cin myString
+    friend std::ostream& operator<< (std::ostream& out, const mString& myStr);  // couter myString
+    friend std::istream& operator>> (std::istream& in, mString& myStr);         // cin myString
 
     //=========================
     //
@@ -32,9 +36,6 @@ public:
     //
     //=========================
 
-    char toChar(mString* str); // to char for myString
-    // mString number(int num)
-    // {
-    //     return 0;
-    // }
+    // mString number(int num);
+
 };
