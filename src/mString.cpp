@@ -1,6 +1,5 @@
 #include "mString.h"
 
-
 //===========================================
 //
 // Implementing class methods
@@ -10,7 +9,8 @@
 
 mString::mString()
 {
-    mainStr = nullptr;
+    //mainStr = 0;
+    mainStr = static_cast<char*>(malloc(sizeof(char) * 1));
 }
 
 mString::mString(std::string str)
@@ -27,7 +27,7 @@ mString::mString(char* str)
 
 mString::mString(const char* str)
 {
-    mainStr = _strdup(str);
+    mainStr = strdup(str);
 }
 
 mString::mString(mString* str)
@@ -38,26 +38,14 @@ mString::mString(mString* str)
 
 mString::~mString()
 {
+    //free(mainStr);
 }
-
 
 mString& mString::operator=(std::string str)
 {
-    mainStr = new char[str.size()];
-    std::copy(str.begin(), str.end(), mainStr);
-    mainStr[str.size()] = '\0';
+    mainStr = const_cast<char*>(str.c_str());
     return *this;
 }
-
-
-mString& mString::operator+=(std::string str)
-{
-    char* oldStr = mainStr;
-    mainStr = (char*)malloc(strlen(oldStr) + str.size());
-
-    return *this;
-}
-
 
 mString& mString::operator=(mString* str)
 {
@@ -65,13 +53,11 @@ mString& mString::operator=(mString* str)
     return *this;
 }
 
-
 mString& mString::operator=(char* str)
 {
     mainStr = str;
     return *this;
 }
-
 
 std::ostream& operator<<(std::ostream& out, const mString& myStr)
 {
@@ -83,4 +69,15 @@ std::istream& operator>>(std::istream& in, mString& myStr)
 {
     in >> myStr.mainStr;
     return in;
+}
+
+mString& mString::operator+=(std::string str)
+{   
+    char *temp = static_cast<char*>(malloc(sizeof(mainStr) * strlen(mainStr)));
+    strcpy(temp, mainStr);
+    mainStr = static_cast<char*>(malloc(strlen(this->mainStr) + str.size() + 1));
+    strcat(mainStr, temp);
+    strcat(mainStr, str.c_str());
+
+    return *this;
 }
