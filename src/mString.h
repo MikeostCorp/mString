@@ -21,10 +21,10 @@ public:
     //=========================
 
     mString& operator = (std::string str);    // overload operator for just string =
-    mString& operator += (std::string str);   // overload operator for just string +=
     mString& operator = (mString* str);       // overload operator for string myString =
-    // mString& operator += (myString str);   // overload operator for just myString +=
     mString& operator = (char* str);          // overload operator for char string =
+    mString& operator += (std::string str);   // overload operator for just string +=
+    // mString& operator += (myString str);   // overload operator for just myString +=
     //mString& operator += (char* str);       // overload operator for char string +=
 
     friend std::ostream& operator<< (std::ostream& out, const mString& myStr);  // couter myString
