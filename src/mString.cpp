@@ -1,36 +1,36 @@
 #include "mString.h"
 
+#define strdup _strdup
+
 //===========================================
 //
 // Implementing class methods
 //
 //===========================================
 
-
 mString::mString()
 {
-    //mainStr = 0;
     mainStr = static_cast<char*>(malloc(sizeof(char) * 1));
 }
 
 mString::mString(std::string str)
 {
-    mainStr = const_cast<char*>(str.c_str());
+    mainStr = strdup(str.c_str());
+}
+
+mString::mString(mString* str)
+{
+    mainStr = strdup(str->mainStr);
 }
 
 mString::mString(char* str)
 {
-    mainStr = str;
+    mainStr = strdup(str);
 }
 
 mString::mString(const char* str)
 {
     mainStr = strdup(str);
-}
-
-mString::mString(mString* str)
-{
-    mainStr = str->mainStr;
 }
 
 mString::~mString()
@@ -40,24 +40,30 @@ mString::~mString()
 
 mString& mString::operator=(std::string str)
 {
-    mainStr = const_cast<char*>(str.c_str());
+    mainStr = strdup(str.c_str());
     return *this;
 }
 
 mString& mString::operator=(mString* str)
 {
-    mainStr = str->mainStr;
+    mainStr = strdup(str->mainStr);
     return *this;
 }
 
 mString& mString::operator=(char* str)
 {
-    mainStr = str;
+    mainStr = strdup(str);
+    return *this;
+}
+
+mString& mString::operator=(const char* str)
+{
+    mainStr = strdup(str);
     return *this;
 }
 
 mString& mString::operator+=(std::string str)
-{   
+{
     this->mainStr = (char*)(realloc(this->mainStr, strlen(this->mainStr) + str.size() + 1));
     strcat(this->mainStr, str.c_str());
     return *this;
