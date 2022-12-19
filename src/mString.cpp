@@ -35,7 +35,7 @@ mString::mString(const char* str)
 
 mString::~mString()
 {
-    free(mainStr);
+  // free(mainStr);
 }
 
 mString& mString::operator=(std::string str)
@@ -79,4 +79,42 @@ std::istream& operator>>(std::istream& in, mString& myStr)
 {
     in >> myStr.mainStr;
     return in;
+}
+
+char mString::chartAt(int num)
+{
+    return mainStr[num];
+}
+
+int mString::length()
+{
+    return strlen(mainStr);
+}
+
+mString mString::toUpStr()
+{
+    unsigned int i = 0;
+    while (i < this->length())
+    {
+        if (mainStr[i] >= 'a' && mainStr[i] <= 'z')
+        {
+            mainStr[i] = char(mainStr[i] - 32);
+        }
+        i++;
+    }
+    return mainStr;
+}
+
+mString mString::toLowStr()
+{
+    unsigned int i = 0;
+    while (i < this->length())
+    {
+        if (mainStr[i] >= 'A' && mainStr[i] <= 'Z')
+        {
+            mainStr[i] = char(mainStr[i] + 32);
+        }
+        i++;
+    }
+    return mainStr;
 }
