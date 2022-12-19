@@ -8,7 +8,6 @@ private:
 
 public:
 
-
     //===========================
     // 
     // Constructors
@@ -48,12 +47,15 @@ public:
     friend std::ostream& operator<< (std::ostream& out, const mString& myStr);  // cout myString
     friend std::istream& operator>> (std::istream& in, mString& myStr);         // cin myString
 
+
     //============================
     //
     // Methods for myString
     //
     //============================
 
-    // mString number(int num);
-
+    char chartAt(int num);       // returns the character at the given number
+    int length();                // string length
+    mString toUpStr();           // converts a string to uppercase
+    mString toLowStr();          // converts string to lower case
 };
