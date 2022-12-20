@@ -1,5 +1,4 @@
 #include "mString.h"
-#define strdup _strdup
 
 //===========================================
 //
