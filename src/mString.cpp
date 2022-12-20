@@ -1,4 +1,5 @@
 #include "mString.h"
+#define strdup _strdup
 
 //===========================================
 //
@@ -71,9 +72,33 @@ mString& mString::operator=(const char* str)
 
 mString& mString::operator+=(std::string str)
 {
-    sizeStr += str.size(); 
+    sizeStr += str.size();
     this->mainStr = (char*)(realloc(this->mainStr, sizeStr + 1));
     strcat(this->mainStr, str.c_str());
+    return *this;
+}
+
+mString& mString::operator+=(mString str)
+{
+    sizeStr += str.length();
+    this->mainStr = (char*)(realloc(this->mainStr, sizeStr + 1));
+    strcat(this->mainStr, str.mainStr);
+    return *this;
+}
+
+mString& mString::operator+=(char* str)
+{
+    sizeStr += strlen(str);
+    this->mainStr = (char*)(realloc(this->mainStr, sizeStr + 1));
+    strcat(this->mainStr, str);
+    return *this;
+}
+
+mString& mString::operator+=(const char* str)
+{
+    sizeStr += strlen(str);
+    this->mainStr = (char*)(realloc(this->mainStr, sizeStr + 1));
+    strcat(this->mainStr, str);
     return *this;
 }
 
