@@ -38,7 +38,7 @@ mString::mString(const char* str)
 
 mString::~mString()
 {
-    //free(mainStr);
+    free(mainStr);
 }
 
 mString& mString::operator=(std::string str)
