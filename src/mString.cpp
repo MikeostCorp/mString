@@ -8,8 +8,6 @@
 
 mString::mString()
 {
-    mainStr = static_cast<char*>(malloc(sizeof(char) * 1));
-    sizeStr = 1;
 }
 
 mString::mString(std::string str)
