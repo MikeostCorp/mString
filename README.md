@@ -2,7 +2,7 @@
 
 ## How to build project
 
-Make sure the `cmake` is installed correctly:
+Make sure the `cmake` is installed correctly!:
 
 ```
 $ cmake --version
