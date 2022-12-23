@@ -36,7 +36,7 @@ mString::mString(const char* str)
 
 mString::~mString()
 {
-    free(mainStr);
+    if(!mainStr) free(mainStr);
 }
 
 mString& mString::operator=(std::string str)
@@ -46,10 +46,10 @@ mString& mString::operator=(std::string str)
     return *this;
 }
 
-mString& mString::operator=(mString* str)
+mString& mString::operator=(mString str)
 {
-    mainStr = strdup(str->mainStr);
-    sizeStr = str->sizeStr;
+    mainStr = strdup(str.getText());
+    sizeStr = str.length();
     return *this;
 }
 
@@ -79,7 +79,7 @@ mString& mString::operator+=(mString str)
 {
     sizeStr += str.length();
     this->mainStr = (char*)(realloc(this->mainStr, sizeStr + 1));
-    strcat(this->mainStr, str.mainStr);
+    strcat(this->mainStr, str.getText());
     return *this;
 }
 
@@ -119,6 +119,11 @@ char mString::chartAt(int num)
 int mString::length()
 {
     return sizeStr;
+}
+
+char* mString::getText()
+{
+    return mainStr;
 }
 
 mString mString::toUpStr()
