@@ -11,6 +11,7 @@ mString::mString()
 }
 
 mString::mString(const mString &mStr){
+    this->sizeStr = mStr.sizeStr;
     this->mainStr = static_cast<char*>(malloc(this->sizeStr + 1));
     strcpy(this->mainStr, mStr.mainStr);
 }
