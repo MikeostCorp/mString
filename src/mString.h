@@ -31,7 +31,7 @@ public:
     //=============================================
 
     mString& operator = (std::string str);       // overload operator for just string =
-    mString& operator = (mString str);          // overload operator for string myString =
+    mString& operator = (mString str);           // overload operator for string myString =
     mString& operator = (char* str);             // overload operator for char string =
     mString& operator = (const char* str);       // overload operator for const char =
 
