@@ -42,15 +42,7 @@ mString::mString(const char* str)
 
 mString::~mString()
 {   
-    if(mainStr)
-    {
-        free(mainStr);
-        std::cout << "da\n";
-    }
-    else
-    {
-        std::cout << "no\n";
-    }
+    if(mainStr) free(mainStr);
 }
 
 mString& mString::operator=(std::string str)
@@ -142,28 +134,30 @@ char* mString::getText()
 
 mString mString::toUpStr()
 {
+    mString upStr = *this;
     size_t i = 0;
-    while (i < sizeStr)
+    while (i < upStr.sizeStr)
     {
-        if (mainStr[i] >= 'a' && mainStr[i] <= 'z')
+        if (upStr.mainStr[i] >= 'a' && upStr.mainStr[i] <= 'z')
         {
-            mainStr[i] = char(mainStr[i] - 32);
+            upStr.mainStr[i] = char(upStr.mainStr[i] - 32);
         }
         ++i;
     }
-    return mainStr;
+    return upStr;
 }
 
 mString mString::toLowStr()
 {
+    mString lowStr = *this;
     size_t i = 0;
-    while (i < sizeStr)
+    while (i < lowStr.sizeStr)
     {
-        if (mainStr[i] >= 'A' && mainStr[i] <= 'Z')
+        if (lowStr.mainStr[i] >= 'A' && lowStr.mainStr[i] <= 'Z')
         {
-            mainStr[i] = char(mainStr[i] + 32);
+            lowStr.mainStr[i] = char(lowStr.mainStr[i] + 32);
         }
         ++i;
     }
-    return mainStr;
+    return lowStr;
 }
