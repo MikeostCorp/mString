@@ -20,6 +20,7 @@ public:
     mString(mString* str);     // constructor for mString
     mString(char* str);        // constructor for char
     mString(const char* str);  // constctor for const char
+    mString(const mString &mStr);
     ~mString();                // destructor
 
 

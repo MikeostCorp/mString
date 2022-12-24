@@ -10,6 +10,11 @@ mString::mString()
 {
 }
 
+mString::mString(const mString &mStr){
+    this->mainStr = static_cast<char*>(malloc(this->sizeStr + 1));
+    strcpy(this->mainStr, mStr.mainStr);
+}
+
 mString::mString(std::string str)
 {
     mainStr = strdup(str.c_str());
@@ -35,8 +40,16 @@ mString::mString(const char* str)
 }
 
 mString::~mString()
-{
-    if(!mainStr) free(mainStr);
+{   
+    if(mainStr)
+    {
+        free(mainStr);
+        std::cout << "da\n";
+    }
+    else
+    {
+        std::cout << "no\n";
+    }
 }
 
 mString& mString::operator=(std::string str)
@@ -48,8 +61,8 @@ mString& mString::operator=(std::string str)
 
 mString& mString::operator=(mString str)
 {
-    mainStr = strdup(str.getText());
-    sizeStr = str.length();
+    this->mainStr = static_cast<char*>(malloc(str.sizeStr + 1));
+    strcpy(this->mainStr, str.mainStr);
     return *this;
 }
 
@@ -79,7 +92,7 @@ mString& mString::operator+=(mString str)
 {
     sizeStr += str.length();
     this->mainStr = (char*)(realloc(this->mainStr, sizeStr + 1));
-    strcat(this->mainStr, str.getText());
+    strcat(this->mainStr, str.mainStr);
     return *this;
 }
 
