@@ -119,7 +119,9 @@ std::istream& operator>>(std::istream& in, mString& myStr)
 
 char mString::chartAt(int num)
 {
-    return mainStr[num];
+    if(num < this->sizeStr) 
+        return mainStr[num];
+    return ' ';
 }
 
 int mString::length()
@@ -127,7 +129,7 @@ int mString::length()
     return sizeStr;
 }
 
-char* mString::getText()
+char* mString::getTextChar()
 {
     return mainStr;
 }
@@ -135,14 +137,12 @@ char* mString::getText()
 mString mString::toUpStr()
 {
     mString upStr = *this;
-    size_t i = 0;
-    while (i < upStr.sizeStr)
+    for(size_t i = 0; i < upStr.sizeStr; i++)
     {
         if (upStr.mainStr[i] >= 'a' && upStr.mainStr[i] <= 'z')
         {
             upStr.mainStr[i] = char(upStr.mainStr[i] - 32);
         }
-        ++i;
     }
     return upStr;
 }
@@ -150,14 +150,68 @@ mString mString::toUpStr()
 mString mString::toLowStr()
 {
     mString lowStr = *this;
-    size_t i = 0;
-    while (i < lowStr.sizeStr)
+    for (size_t i = 0; i < lowStr.sizeStr; i++) 
     {
         if (lowStr.mainStr[i] >= 'A' && lowStr.mainStr[i] <= 'Z')
         {
             lowStr.mainStr[i] = char(lowStr.mainStr[i] + 32);
         }
-        ++i;
     }
     return lowStr;
+}
+
+bool mString::beginWith(char bChar)
+{
+    if (mainStr[0] == bChar)
+        return true;
+    return false;
+}
+
+bool mString::endWith(char eChar)
+{
+    if (mainStr[this->sizeStr - 1] == eChar)
+        return true;
+    return false;
+}
+
+bool mString::includes(char iChar)
+{
+    for (size_t i = 0; i < this->sizeStr; i++)
+    {
+        if (mainStr[i] == iChar)
+            return true;
+    }
+    return false;
+}
+
+int mString::indexChar(char iChar)
+{
+    for (size_t i = 0; i < this->sizeStr; i++)
+    {
+        if (mainStr[i] == iChar)
+            return i;
+    }
+    return 0;
+}
+
+int mString::lastIndexChar(char lChar)
+{
+    for (size_t i = 0; i < this->sizeStr; i++)
+    {
+        if (mainStr[this->sizeStr - i] == lChar)
+            return this->sizeStr - i;
+    }
+    return 0;
+}
+
+size_t mString::searchCount(char sChar)
+{
+    size_t countChar = 0;
+    for (size_t i = 0; i < this->sizeStr; i++)
+    {
+        if (mainStr[i] == sChar)
+            countChar++;
+    }
+    return countChar;
+
 }
