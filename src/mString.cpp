@@ -12,7 +12,7 @@ mString::mString()
     sizeStr = 0;
 }
 
-mString::mString(const mString& mStr) 
+mString::mString(const mString& mStr)
 {
     this->sizeStr = mStr.sizeStr;
     this->mainStr = static_cast<char*>(malloc(this->sizeStr + 1));
@@ -104,10 +104,17 @@ size_t mString::length()
     return sizeStr;
 }
 
-char mString::chartAt(const size_t num)
+char mString::charAt(const size_t num)
 {
-    if(num < this->sizeStr) 
+    if (num < this->sizeStr)
         return mainStr[num];
+    return ' ';
+}
+
+char mString::at(const size_t num)
+{
+    if ((num * -1) < this->sizeStr)
+        return mainStr[sizeStr - num * -1];
     return ' ';
 }
 
@@ -119,7 +126,7 @@ char* mString::getTextChar()
 mString mString::toUpStr()
 {
     mString upStr = *this;
-    for(size_t i = 0; i < upStr.sizeStr; ++i)
+    for (size_t i = 0; i < upStr.sizeStr; ++i)
     {
         if (upStr.mainStr[i] >= 'a' && upStr.mainStr[i] <= 'z')
         {
@@ -132,7 +139,7 @@ mString mString::toUpStr()
 mString mString::toLowStr()
 {
     mString lowStr = *this;
-    for (size_t i = 0; i < lowStr.sizeStr; ++i) 
+    for (size_t i = 0; i < lowStr.sizeStr; ++i)
     {
         if (lowStr.mainStr[i] >= 'A' && lowStr.mainStr[i] <= 'Z')
         {
@@ -178,7 +185,7 @@ size_t mString::indexChar(const char iChar)
 
 size_t mString::lastIndexChar(const char lChar)
 {
-    for (size_t i = sizeStr - 1; i >= 0; --i)
+    for (int i = sizeStr - 1; i >= 0; --i)
     {
         if (mainStr[i] == lChar)
             return i;
