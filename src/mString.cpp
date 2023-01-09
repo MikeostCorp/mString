@@ -111,13 +111,6 @@ char mString::charAt(const size_t num)
     return ' ';
 }
 
-char mString::at(const size_t num)
-{
-    if ((num * -1) < this->sizeStr)
-        return mainStr[sizeStr - num * -1];
-    return ' ';
-}
-
 char* mString::getTextChar()
 {
     return mainStr;

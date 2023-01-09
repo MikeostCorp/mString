@@ -56,7 +56,6 @@ public:
 
     size_t length();                        // string length
     char charAt(const size_t num);          // returns the character at the given index
-    char at(const size_t num);              // return the character at the given index from the end of the string
     mString toUpStr();                      // converts a string to uppercase
     mString toLowStr();                     // converts a string to lower case
     char* getTextChar();                    // returns a string of type char
